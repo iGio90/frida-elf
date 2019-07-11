@@ -62,7 +62,7 @@ const freadImpl = initializeNativeFunction('fread', 'uint32', ['pointer', 'int',
 export class Elf {
     header: null | ElfHeader;
     sectionHeaders: ElfSectionHeader[];
-    programHeaders: ELFProgamHeader[];
+    programHeaders: ElFProgamHeader[];
     is64bit: boolean;
     endian: string;
 
@@ -163,7 +163,7 @@ export class Elf {
         }
 
         for (let i = 0; i < this.header.e_phnum; i++) {
-            this.programHeaders.push(new ELFProgamHeader(progHeadersBuffer.add(this.header.e_phentsize * i), this.is64bit));
+            this.programHeaders.push(new ElFProgamHeader(progHeadersBuffer.add(this.header.e_phentsize * i), this.is64bit));
         }
 
         const strTableBuffer = allocateRw(this.header.e_shentsize);
@@ -344,7 +344,7 @@ class ElfHeader {
     }
 }
 
-class ELFProgamHeader {
+class ElFProgamHeader {
     p_type: number;
     p_offset: number;
     p_vaddr: number;
